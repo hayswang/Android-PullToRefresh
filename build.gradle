@@ -1,0 +1,21 @@
+subprojects {
+	apply plugin: 'maven'
+
+		group = 'com.github.chrisbanes.pulltorefresh'
+	version = '2.1.2-SNAPSHOT'
+	archivesBaseName = project.name
+
+	repositories {
+		maven {url "http://10.1.42.89:8081/nexus/content/groups/public/"}
+		maven {url "http://10.1.42.89:8081/nexus/content/repositories/snapshots/"}
+		mavenCentral()
+	}
+
+	tasks.withType(Compile) {
+		options.encoding = "UTF-8"
+	}
+}
+
+project.ext {
+	dependency_android_tools_build_gradle = 'com.android.tools.build:gradle:0.10.+'
+}

@@ -1,0 +1,51 @@
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			repository(url: "http://10.1.42.89:8081/nexus/content/repositories/releases/") {
+				authentication(userName: nexusUser, password: nexusPassword)
+			}
+			snapshotRepository(url: "http://10.1.42.89:8081/nexus/content/repositories/snapshots/") {
+				authentication(userName: nexusUser, password: nexusPassword)
+			}
+		}
+	}
+}
+
+buildscript {
+	repositories {
+		maven {url 'http://10.1.42.89:8081/nexus/content/groups/public'}
+		mavenCentral()
+	}
+	dependencies {
+		classpath dependency_android_tools_build_gradle
+	}
+}
+apply plugin: 'android-library'
+
+dependencies {
+}
+
+android {
+	compileSdkVersion 17
+	buildToolsVersion '19.1.0'
+
+	defaultConfig {
+		minSdkVersion 14
+		targetSdkVersion 17
+//		versionCode 1
+//		versionName "1.0"
+	}
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            manifest.srcFile 'AndroidManifest.xml'
+        }
+    }
+
+}
